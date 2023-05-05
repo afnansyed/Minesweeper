@@ -1,0 +1,100 @@
+if(loose == false && correct == 0){
+                            for(unsigned int i =0; i< tiles.size(); i++){
+                                if(tiles[i].GetBounds().contains(mousePosition) ){
+
+                                    if(tiles[i].isMine){
+                                        loose = true;
+                                    }
+                                    else{
+                                        tiles[i].Revealed();
+                                    }
+                                }
+                                if(debugSprite.getGlobalBounds().contains(mousePosition)){
+                                    if(tiles[i].isMine){
+                                        tiles[i].isDebug = true;
+                                    }
+
+                                }
+                            }
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+library IEEE;
+use IEEE.Std_logic_1164.all;
+use IEEE.Numeric_Std.all;
+
+entity dataPath_tb is
+end;
+
+architecture bench of dataPath_tb is
+
+component GCPU_Datapath
+   port (
+       Port ( 
+		CLK, RESET_L: in  std_logic;
+		BUS_IN:  in  std_logic_vector(3 downto 0);
+        BUS_OUT: out std_logic_vector(3 downto 0);
+		  CIN : in std_logic;
+		  OP : in std_logic_vector(2 downto 0);
+		  SEL1 : in std_logic_vector( 1 downto 0);
+		  SEL2 : in std_logic_vector(1 downto 0);
+		  COUT : out std_logic);
+        -- Use Figure-2 to determine the rest of the inputs and outputs.
+	);
+end component;
+
+signal CLK : std_logic_vector(3 downto 0) := (others => '0');
+signal RESET_L: std_logic_vector := '0';
+signal BUS_IN: std_logic_vector(3 downto 0) := (others => '0');
+signal BUS_OUT: std_logic_vector(3 downto 0) := (others => '0');
+signal CIN : std_logic;
+signal OP : : std_logic_vector(2 downto 0);
+signal SEL1 : std_logic_vector(1 downto 0);
+signal SEL2 : std_logic_vector(1 downto 0);
+signal COUT  std_logic;
+		  
+begin
+
+uut: GCPU_Datapath
+
+   clock: process
+	begin
+	CLOCK_LOOP: LOOP
+	CLK <= '0';
+	wait for 80 ns;
+	CLK <= '1';
+	wait for 80 ns;
+	end loop CLOCK_LOOP;
+end process;
+	
+
+Stimuli_Gen: process
+
+begin
+   
+	
+	
+   A   <= "0010"; --2
+   B   <= "0100";  --4
+   CIN   <= '0';
+	
+   
+
+wait;
+end process;
+end;
+
+GCPU_Datapath
